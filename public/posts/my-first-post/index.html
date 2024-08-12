@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>POD GRACEFULL TERMINATION | K8s Pod testing Documentation</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Pod Graceful Termination Test Introduction The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes&rsquo; ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.">
+    <meta name="generator" content="Hugo 0.131.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
+  <meta property="og:site_name" content="K8s Pod testing Documentation">
+  <meta property="og:title" content="POD GRACEFULL TERMINATION">
+  <meta property="og:description" content="Pod Graceful Termination Test Introduction The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes’ ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-12T18:00:42+05:30">
+    <meta property="article:modified_time" content="2024-08-12T18:00:42+05:30">
+
+  <meta itemprop="name" content="POD GRACEFULL TERMINATION">
+  <meta itemprop="description" content="Pod Graceful Termination Test Introduction The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes’ ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.">
+  <meta itemprop="datePublished" content="2024-08-12T18:00:42+05:30">
+  <meta itemprop="dateModified" content="2024-08-12T18:00:42+05:30">
+  <meta itemprop="wordCount" content="661">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="POD GRACEFULL TERMINATION">
+  <meta name="twitter:description" content="Pod Graceful Termination Test Introduction The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes’ ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.">
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        K8s Pod testing Documentation
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">POD GRACEFULL TERMINATION</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-08-12T18:00:42+05:30">August 12, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="pod-graceful-termination-test">Pod Graceful Termination Test</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes&rsquo; ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.</p>
+<h2 id="overview">Overview</h2>
+<p>The pod_graceful_termination_test.go is an end-to-end test designed to verify the correct handling of pod termination in Kubernetes. The test focuses on ensuring that pods are terminated gracefully, allowing ongoing processes within the pod to complete before the pod is fully removed. This involves observing key lifecycle events during the termination phase, such as signal handling, termination grace periods, and final state consistency. The test verifies that Kubernetes adheres to the specified termination behavior, ensuring the integrity of applications during shutdown. Metrics are collected during the test to monitor and record the total number of lifecycle events, providing insights into the termination process. By integrating Prometheus metrics, the test allows for detailed analysis and observability of the pod termination behavior, contributing to more robust and reliable Kubernetes deployments.</p>
+<h2 id="test-description-pod-graceful-termination">Test Description: Pod Graceful Termination</h2>
+<p>This test is designed to verify the graceful termination behavior of Kubernetes pods. When a pod is deleted, Kubernetes sends a termination signal to the pod, allowing it to shut down gracefully within a specified grace period. The test ensures that the pod receives the termination signal, processes it correctly, and shuts down within the allowed time frame. The pod&rsquo;s lifecycle events are closely monitored, and key metrics are collected to evaluate the effectiveness of the termination process. The test also validates that all processes within the pod are given sufficient time to complete, ensuring no data loss or corruption occurs during shutdown. The goal is to confirm that Kubernetes adheres to the defined graceful termination policies, providing reliable and consistent behavior across different workloads.</p>
+<ul>
+<li>Checking that termination signals are sent correctly.</li>
+<li>Verifying that pods complete their shutdown tasks.</li>
+<li>Ensuring that resources are cleaned up properly.</li>
+</ul>
+<h2 id="how-to-run-the-test">How to Run the Test</h2>
+<p>To execute this test, follow these steps:</p>
+<ol>
+<li>
+<p>Clone the K8s repository form Github</p>
+<pre><code>git clone https://github.com/kubernetes/kubernetes.git
+</code></pre>
+</li>
+<li>
+<p>Change directory to the given directory</p>
+<pre><code>cd kubernetes/test/e2e_node/
+</code></pre>
+</li>
+<li>
+<p>Create a file names as &lsquo;pod_graceful_termination_test.go&rsquo;</p>
+<pre><code>vi pod_graceful_termination_test.go
+</code></pre>
+</li>
+<li>
+<p>Copy this go program into the given file</p>
+<pre><code>package e2e_node
+import (
+&quot;time&quot;
+
+v1 &quot;k8s.io/api/core/v1&quot;
+&quot;k8s.io/apimachinery/pkg/util/intstr&quot;
+&quot;k8s.io/kubernetes/test/e2e/framework&quot;
+&quot;k8s.io/kubernetes/test/e2e/framework/kubelet&quot;
+&quot;k8s.io/kubernetes/test/e2e/framework/pods&quot;
+&quot;k8s.io/kubernetes/test/e2e/framework/skipper&quot;
+&quot;k8s.io/kubernetes/test/e2e_node/e2enode&quot;
+&quot;k8s.io/kubernetes/test/utils/ktesting&quot;
+&quot;k8s.io/kubernetes/test/utils/podserver&quot;
+)
+
+var _ = SIGDescribe(&quot;Pod Lifecycle&quot;, func() {
+f := framework.NewDefaultFramework(&quot;pod-lifecycle&quot;)
+var nodeName string
+
+ginkgo.BeforeEach(func() {
+nodeName = e2enode.GetNodeThatCanRunPod(f)
+})
+
+ginkgo.It(&quot;should terminate gracefully&quot;, func() {
+pod := &amp;v1.Pod{
+    ObjectMeta: metav1.ObjectMeta{
+        Name: &quot;graceful-termination-pod&quot;,
+    },
+    Spec: v1.PodSpec{
+        Containers: []v1.Container{
+            {
+                Name:    &quot;test-container&quot;,
+                Image:   &quot;busybox&quot;,
+                Command: []string{&quot;sh&quot;, &quot;-c&quot;, &quot;sleep 60; echo 'Finished'&quot;},
+            },
+        },
+        TerminationGracePeriodSeconds: int64ptr(30),
+    },
+}
+
+pod = f.PodClient().CreateSync(pod)
+err := f.PodClient().DeleteSync(pod.Name, metav1.DeleteOptions{}, framework.DefaultPodDeletionTimeout)
+framework.ExpectNoError(err, &quot;Failed to delete pod&quot;)
+
+// Verify that the pod was terminated gracefully
+framework.ExpectEqual(pod.Status.Phase, v1.PodSucceeded, &quot;Pod did not terminate gracefully&quot;)
+})
+})
+
+func int64ptr(i int64) *int64 { return &amp;i }
+</code></pre>
+</li>
+<li>
+<p>Now go to the root directory of kubernets</p>
+<pre><code>cd ../..
+</code></pre>
+</li>
+<li>
+<p>Make e2e test binary</p>
+<pre><code>make WHAT=test/e2e/e2e.test
+make WHAT=cmd/kubectl
+</code></pre>
+</li>
+<li>
+<p>Ensure go version compatiblity</p>
+<pre><code>git checkout v1.21.0
+</code></pre>
+</li>
+<li>
+<p>Run these command before testing</p>
+<pre><code>1. export KUBECONFIG=~/.kube/config
+2. kubectl config current-context
+</code></pre>
+</li>
+<li>
+<p>Run the test(from the kubernetes root folder)</p>
+<pre><code>./_output/bin/e2e.test --ginkgo.focus=&quot;Pod Lifecycle&quot;
+</code></pre>
+</li>
+</ol>
+<h2 id="conclusion">CONCLUSION</h2>
+<p>The Pod Graceful Termination test plays a critical role in ensuring the reliability and stability of Kubernetes clusters by validating the proper handling of pod shutdowns. By thoroughly testing the pod termination process, including the adherence to the specified grace period, this test helps prevent data loss and service disruptions during pod deletions. The integration of metrics collection further enhances the test by providing valuable insights into the termination process, allowing for continuous improvement and optimization. Overall, this test is essential for maintaining the integrity and performance of Kubernetes-managed applications, ensuring a seamless and reliable user experience</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  K8s Pod testing Documentation 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

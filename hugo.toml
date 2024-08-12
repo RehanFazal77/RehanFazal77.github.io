@@ -1,0 +1,4 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'K8s Pod testing Documentation'
+theme = 'ananke'

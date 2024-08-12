@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on K8s Pod testing Documentation</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on K8s Pod testing Documentation</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Aug 2024 18:00:42 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>POD GRACEFULL TERMINATION</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Mon, 12 Aug 2024 18:00:42 +0530</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>Pod Graceful Termination Test Introduction The Pod Graceful Termination test is designed to assess Kubernetes handling of pod shutdowns. When a pod is deleted, Kubernetes gives it a grace period to terminate its processes cleanly. This test evaluates whether the pod correctly adheres to the termination signal, ensuring all processes are completed within the given time frame. The test helps validate Kubernetes&amp;rsquo; ability to maintain data integrity and system reliability during pod shutdowns, making sure that workloads are managed smoothly and without unexpected disruptions.</description>
+    </item>
+  </channel>
+</rss>
